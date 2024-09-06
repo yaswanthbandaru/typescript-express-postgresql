@@ -1,4 +1,9 @@
 
+## URL for postgresql connection looks like this
+
+    "postgres://<your_user>:<your_password>@<your_hostname>/postgres"
+
+
 
 ## Postgraphile Requests
 
