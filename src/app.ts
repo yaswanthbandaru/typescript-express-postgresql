@@ -1,5 +1,7 @@
 // const database = require('./db/db'); // Import the database connection
+require('dotenv').config();
 const express = require('express');
+const { postgraphile } = require('postgraphile');
 import { AppDataSource } from "./data-source";
 import { User } from './entity/User';
 
@@ -7,6 +9,17 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+
+app.use(
+    postgraphile(
+        process.env.DB_URL,
+        'public',
+        {
+            graphiql: true,
+            enhanceGraphiql: true,
+        }
+    )
+)
 
 // Connect to PostgreSQL database
 AppDataSource.initialize()
@@ -60,19 +73,3 @@ AppDataSource.initialize()
     })
 
 
-/*
-
-Post Request:
-    curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"firstname": "John", "lastname": "Doe", "email": "john@example.com"}'
-
-
-GET Request:
-    curl -X GET http://localhost:3000/users
-
-PUT Request:
-    curl -X PUT http://localhost:3000/users/1 -H "Content-Type: application/json" -d '{"firstname": "Joey", "lastname": "Doe", "email": "joeydoe@example.com"}'
-
-
-DELETE Request:
-    curl -X DELETE http://localhost:3000/users/1 
-*/
