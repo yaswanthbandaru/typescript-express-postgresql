@@ -10,22 +10,22 @@ const port = process.env.PORT;
 
 app.use(express.json());
 
-app.use(
-    postgraphile(
-        process.env.DB_URL,
-        'public',
-        {
-            graphiql: true,
-            enhanceGraphiql: true,
-        }
-    )
-)
 
 // Connect to PostgreSQL database
 AppDataSource.initialize()
-    .then(async () => {
-        console.log('Data source has been initialiazed')
-
+.then(async () => {
+    console.log('Data source has been initialiazed')
+    
+        app.use(
+            postgraphile(
+                process.env.DB_URL,
+                'public',
+                {
+                    graphiql: true,
+                    enhanceGraphiql: true,
+                }
+            )
+        )
         // Define the CRUD operations
         app.get("/users", async (req: any, res: any) => {
             const userRepository = AppDataSource.getRepository(User);

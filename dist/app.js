@@ -18,14 +18,14 @@ const User_1 = require("./entity/User");
 const app = express();
 const port = process.env.PORT;
 app.use(express.json());
-app.use(postgraphile(process.env.DB_URL, 'public', {
-    graphiql: true,
-    enhanceGraphiql: true,
-}));
 // Connect to PostgreSQL database
 data_source_1.AppDataSource.initialize()
     .then(() => __awaiter(void 0, void 0, void 0, function* () {
     console.log('Data source has been initialiazed');
+    app.use(postgraphile(process.env.DB_URL, 'public', {
+        graphiql: true,
+        enhanceGraphiql: true,
+    }));
     // Define the CRUD operations
     app.get("/users", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const userRepository = data_source_1.AppDataSource.getRepository(User_1.User);
