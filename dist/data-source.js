@@ -25,18 +25,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
-const User_1 = require("./entity/User");
+const Employee_1 = require("./entity/Employee");
 const dotenv = __importStar(require("dotenv"));
+const Organization_1 = require("./entity/Organization");
+const Project_1 = require("./entity/Project");
+const Task_1 = require("./entity/Task");
 dotenv.config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
-    host: process.env.DB_HOST,
+    host: "localhost",
     port: 5432,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    synchronize: true,
+    username: "postgres",
+    password: "avatar007",
+    synchronize: false,
     logging: true,
-    entities: [User_1.User],
+    entities: [Employee_1.Employee, Organization_1.Organization, Project_1.Project, Task_1.Task],
+    migrations: ["src/migration/*.ts"],
     subscribers: [],
-    migrations: [],
 });

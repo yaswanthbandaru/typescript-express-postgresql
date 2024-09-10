@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, ManyToMan
 import { Project } from "./Project";
 import { Employee } from "./Employee";
 
+@Entity()
 export class Task {
     @PrimaryGeneratedColumn()
     id: number 

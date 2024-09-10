@@ -3,6 +3,7 @@ import { Employee } from "./Employee";
 import { Organization } from "./Organization";
 import { Task } from "./Task";
 
+@Entity()
 export class Project {
     @PrimaryGeneratedColumn()
     id: number 
@@ -22,7 +23,7 @@ export class Project {
     @Column()
     status: string  // e.g => 'active", "completed", "on-hold", "plan"
 
-    @ManyToOne(() => Organization, (organization) => organization.projects)
+    @ManyToOne(() => Organization, (organization) => organization.projects )
     organization: Organization
 
     @ManyToMany(() => Employee,(employee) => employee.projects )
