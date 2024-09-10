@@ -1,4 +1,9 @@
 
+## Migrations
+
+    npx typeorm migration:create ./src/migration/CreateEntitiesMigration
+
+
 ## REST API requests
 
 
