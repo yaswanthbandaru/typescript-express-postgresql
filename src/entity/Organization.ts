@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from "typeorm";
+import { Entity,  PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Employee } from "./Employee";
 import { Project } from "./Project";
 
-Entity()
+@Entity()
 export class Organization {
     @PrimaryGeneratedColumn()
-    id: number
+    id: number 
 
     @Column()
     name: string
@@ -13,18 +13,18 @@ export class Organization {
     @Column()
     address: string
 
-    @Column({ nullable: true})
-    url?: string 
+    @Column({ nullable: true })
+    url?: string
 
     @Column({ nullable: true })
-    phone?: string
+    phone?: string 
 
     @Column({ nullable: true })
-    description?: string 
+    description?: string
 
-    @OneToMany(() => Employee, (employee) => employee.organization )
+    @OneToMany(() => Employee, (employee) => employee.organization)
     employees: Employee[]
 
-    @OneToMany(() => Project, (project) => project.organization )
+    @OneToMany(() => Project, (project) => project.organization)
     projects: Project[]
 }

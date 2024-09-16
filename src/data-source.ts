@@ -1,21 +1,27 @@
-import { DataSource, Table } from "typeorm";
-import { Employee } from "./entity/Employee";
 import * as dotenv from "dotenv";
-import { Organization } from "./entity/Organization";
-import { Project } from "./entity/Project";
-import { Task } from "./entity/Task";
+import { DataSource } from "typeorm";
+// import { Employee } from "./entity/Employee";
+// import { Organization } from "./entity/Organization";
+// import { Project } from "./entity/Project";
+// import { Task } from "./entity/Task";
 
 dotenv.config();
 
-export const AppDataSource = new DataSource({
+const DataConfig: any  = {
     type: "postgres",
     host: "localhost",
     port: 5432,
     username: "postgres",
     password: "avatar007",
+    database: "todo",
     synchronize: false,
-    logging: true,
-    entities: [Employee, Organization, Project, Task],
+    logging: false,
+    entities: ["src/entity/*.ts"],
     migrations: ["src/migration/*.ts"],
     subscribers: [],
-});
+    // cli: {
+    //     migrationsDir: ["src/mig"]
+    // }
+};
+
+export const AppDataSource = new DataSource(DataConfig);

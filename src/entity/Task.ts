@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, ManyToMany } from "typeorm";
-import { Project } from "./Project";
+import { Entity,  PrimaryGeneratedColumn, Column , ManyToMany, ManyToOne} from "typeorm";
 import { Employee } from "./Employee";
+import { Project } from "./Project";
 
 @Entity()
 export class Task {
     @PrimaryGeneratedColumn()
-    id: number 
+    id: number
 
     @Column()
     title: string
@@ -14,14 +14,14 @@ export class Task {
     description: string
 
     @Column({ nullable: true })
-    dueDate?: Date
+    dueDate?: Date 
 
     @Column()
-    priority: string // e.g => low, medium, hight
+    priority: string
+
+    @Column()
+    status: string 
     
-    @Column()
-    status: string // "not started", "in progress", "completed"
-
     @ManyToOne(() => Project, (project) => project.tasks )
     project: Project
 

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, JoinColumn } from "typeorm";
 import { Organization } from "./Organization";
 import { Project } from "./Project";
 import { Task } from "./Task";
@@ -27,7 +27,7 @@ export class Employee {
     @ManyToOne(() => Organization, (organization) => organization.employees)
     organization: Organization 
 
-    @ManyToMany(() => Project, (project) => project.employees )
+    @ManyToMany(() => Project, (project) => project.id )
     @JoinTable()
     projects: Project[]
 

@@ -2,10 +2,15 @@
   "name": "dhan-poc",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "start": "tsc && node dist/app.js",
-    "dev": "nodemon src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "pg-promise": "^11.9.1",
+    "postgraphile": "^4.13.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
   },
   "keywords": [
     "typescript",
@@ -22,13 +27,12 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "pg": "^8.12.0",
-    "pg-promise": "^11.9.1",
-    "postgraphile": "^4.13.0",
-    "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.20"
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run":"ts-node ./node_modules/typeorm/cli.js migration:run -d src/data-source.ts", 
+    "migration:revert":"ts-node ./node_modules/typeorm/cli.js migration:revert -d src/data-source.ts",
+    "migration:generate":"npm run typeorm migration:generate -- -d src/data-source.ts src/migration/$npm_config_name"
   }
 }
